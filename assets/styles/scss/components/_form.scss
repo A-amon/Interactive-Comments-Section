@@ -1,0 +1,43 @@
+.form{
+	&__profile{
+		margin-right: auto;
+		&--medium{
+			display: none;
+		}
+	}
+
+	&-textarea{
+		height: 4rem;
+		border:1px solid $c-gray-light;
+		border-radius: 5px;
+		padding:1rem;
+		margin-bottom: 1rem;
+
+		&::before{
+			content:attr(data-placeholder);
+			margin: 0;
+			color: $c-blue-grayish;
+		}
+
+		&--filled::before{
+			display: none;
+		}
+	}
+
+	@include min-query($d-m){
+		display:flex;
+		align-items: flex-start;
+
+		&__profile{
+			display: none;
+			&--medium{
+				display: block;
+			}
+		}
+
+		&-textarea{
+			flex:1;
+			margin:0 1rem;
+		}
+	}
+}

@@ -1,0 +1,51 @@
+.counter{
+	display: flex;
+	align-items: center;
+	background-color: $c-gray-light;
+	border-radius: 10px;
+
+	&__value{
+		margin:0;
+		color:$c-blue-moderate;
+		font-weight: $fw-bold;
+	}
+
+	button{
+		background-color: transparent;
+		border:none;
+		display: flex;
+		align-items: center;
+		padding:1rem;
+		&:hover path{
+			fill:$c-blue-moderate;
+		}
+	}
+}
+
+.comment{
+	.counter{
+		display: none;
+		@include min-query($d-m){
+			display: flex;
+			grid-column: 1;
+			grid-row:span 3;
+			flex-direction: column;
+			justify-content: center;
+			margin-right: 1.5rem;
+	
+			&__value{
+				flex:1;
+				display: flex;
+				align-items: center;
+			}
+		}
+	}
+
+	&__footer .counter{
+		display: flex;
+
+		@include min-query($d-m){
+			display: none;
+		}
+	}
+}

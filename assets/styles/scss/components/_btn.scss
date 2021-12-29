@@ -1,0 +1,79 @@
+.btn{
+	background-color: transparent;
+	border:none;
+	border-radius: 5px;
+	color: $c-blue-moderate;
+	font-weight: $fw-medium;
+	display: flex;
+	align-items: center;
+
+	&:hover{
+		opacity:0.5;
+	}
+
+	&--blue{
+		color:$c-white;
+		background-color: $c-blue-moderate;
+		padding: 0.8rem 1.5rem;
+		&:disabled{
+			opacity: 0.5;
+			cursor: initial;
+		}
+	}
+
+	&--reply::before, 
+	&--delete::before, 
+	&--edit::before{
+		content:'';
+		display: inline-block;
+		height: 1rem;
+		width: 1rem;
+		background-repeat: no-repeat;
+		background-size: contain;
+		margin-right: 0.5rem;
+	}
+
+	&--reply::before{
+		background-image: url('../../../assets/icons/icon-reply.svg');
+	}
+
+	&--delete{
+		color:$c-red-soft;
+		&::before{
+			background-image: url('../../../assets/icons/icon-delete.svg');
+		}
+	}
+
+	&--edit::before{
+		background-image: url('../../../assets/icons/icon-edit.svg');
+	}
+}
+
+.comment__btn-wrapper{
+	.btn--blue{
+		display: none;
+	}
+
+	&--medium{
+		.btn{
+			display: none;
+		}
+	}
+
+	.btn.active{
+		display: block;
+	}
+
+	@include min-query($d-m){
+		.btn{
+			display: none;
+		}
+
+		&--medium{
+			.btn--delete,
+			.btn--edit{
+				display: block;
+			}
+		}
+	}
+}

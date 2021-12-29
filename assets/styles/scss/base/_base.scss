@@ -1,0 +1,24 @@
+
+body{
+	font-family: $ff-rubik;
+	background-color: $c-gray-very-light;
+}
+
+h1, h2, h3{
+	margin:0;
+}
+
+p{
+	line-height: 1.5;
+}
+
+button{
+	cursor:pointer;
+}
+
+.sr-only{
+	height:0px;
+	width:0px;
+	overflow:hidden;
+	display: block;
+}

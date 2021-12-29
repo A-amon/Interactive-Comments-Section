@@ -1,0 +1,11 @@
+.card{
+	box-sizing: border-box;
+	background-color: $c-white;
+	padding:1rem;
+	border-radius: 10px;
+
+	&__header, &__footer{
+		display: flex;
+		align-items: center;
+	}
+}

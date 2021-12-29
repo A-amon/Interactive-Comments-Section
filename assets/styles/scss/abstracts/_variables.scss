@@ -1,0 +1,29 @@
+
+/* * * * * * * * *
+* COLORS
+* * * * * * * * * */
+$c-blue-moderate: hsl(238, 40%, 52%);
+$c-blue-light-grayish:hsl(239, 57%, 85%);
+$c-blue-grayish:hsl(211, 10%, 45%);
+$c-blue-dark:hsl(212, 24%, 26%);
+$c-red-soft:hsl(358, 79%, 66%);
+$c-red-pale:hsl(357, 100%, 86%);
+$c-gray-very-light:hsl(228, 33%, 97%);
+$c-gray-light:hsl(223, 19%, 93%);
+$c-white:hsl(0, 0%, 100%);
+
+/* * * * * * * * *
+* DEVICES
+* * * * * * * * * */
+$d-m:768px;
+$d-l:1020px;
+
+/* * * * * * * * *
+* TYPOGRAPHY
+* * * * * * * * * */
+$ff-rubik:'Rubik', sans-serif;
+
+// FONT WEIGHTS
+$fw-regular:400;
+$fw-medium:500;
+$fw-bold:700;
