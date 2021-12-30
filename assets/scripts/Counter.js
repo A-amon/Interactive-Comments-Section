@@ -1,10 +1,12 @@
 class Counter {
 	#count;
-	#commentId;
 
-	constructor(count, commentId){
+	constructor(count){
 		this.#count = count
-		this.#commentId = commentId
+	}
+
+	get count(){
+		return this.#count
 	}
 
 	/**

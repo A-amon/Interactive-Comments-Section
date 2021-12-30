@@ -5,7 +5,6 @@ class Comment {
 	#id;
 	#content;
 	#createdAt;
-	#score;
 	#user;
 	#replies;
 	#hasReplies;
@@ -16,14 +15,34 @@ class Comment {
 		this.#id = id
 		this.#content = content
 		this.#createdAt = createdAt
-		this.#score = score
 		this.#user = user
-		this.#counter = new Counter(this.#score, this.#id)
+		this.#counter = new Counter(score)
 
+		this.#replies
 		if(replies){
 			this.#replies = replies
 			this.#hasReplies = replies.length > 0
 		}
+	}
+
+	get id(){
+		return this.#id
+	}
+
+	get content(){
+		return this.#content
+	}
+
+	get createdAt(){
+		return this.#createdAt
+	}
+
+	get score(){
+		return this.#counter.count
+	}
+
+	get user(){
+		return this.#user
 	}
 
 	get hasReplies() {
@@ -43,8 +62,8 @@ class Comment {
 	}
 	
 	getBuild(currentUser){
-		const isCurrentUser = (currentUser === this.#user.username)
-		
+		const isCurrentUser = (currentUser.username === this.#user.username)
+
 		const build = `<article class="comment card">
 							${this.#counter.getBuild()}
 							<div class="card__header comment__header">
@@ -88,7 +107,7 @@ class Comment {
 								
 							</div>
 							<p class="comment__text">
-								${this.#replyingTo && `<a href="#" class="comment__tag" contenteditable="false">@${this.#replyingTo}</a>`} ${this.#content}
+								${this.#replyingTo? `<a href="#" class="comment__tag" contenteditable="false">@${this.#replyingTo}</a>`:''} ${this.#content}
 							</p>
 							<div class="comment__footer card__footer card__footer">
 								${this.#counter.getBuild()}
