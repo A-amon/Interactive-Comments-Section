@@ -127,6 +127,10 @@ class Comment {
 		const updateBtn = element.querySelector('.btn--blue')
 		const editBtns = element.querySelectorAll('.btn--edit')
 
+		/**
+		 * Allow comment to be editable
+		 * - Replace <p> with <div>
+		 */
 		const toggleEditableText = () => {
 			updateBtn.classList.toggle('active')
 
@@ -145,15 +149,24 @@ class Comment {
 			commentTextEl = newTextEl
 		}
 
+		/**
+		 * EDIT BUTTON
+		 */
 		editBtns.forEach(editBtn => {
 			editBtn.addEventListener('click', () => toggleEditableText())
 		})
 
+		/**
+		 * UPDATE BUTTON
+		 */
 		updateBtn && updateBtn.addEventListener('click', () => {
 			const commentTagEl = commentTextEl.children[0]
 			const newCommentText = commentTextEl.textContent.replace(`${commentTagEl.textContent} `,'')
 			this.content = newCommentText
 
+			const updateEvent = new CustomEvent('update',{detail:'You updated a comment!'})
+			document.dispatchEvent(updateEvent)
+			
 			toggleEditableText()
 		})
 	}

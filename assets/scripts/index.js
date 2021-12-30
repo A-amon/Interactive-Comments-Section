@@ -52,9 +52,13 @@ class Main {
 
 		let notifTimeout
 
+		/**
+		 * Hide notification after 3s
+		 */
 		notif.addEventListener('animationend', () => {
 			notifTimeout = setTimeout(() => hideNotif(), 3000)
 		})
+
 		notifBtn.addEventListener('click', () => {
 			hideNotif()
 			clearTimeout(notifTimeout)
@@ -69,6 +73,9 @@ class Main {
 
 		cFormInput.addEventListener('input', () => {
 			const commentToAdd = cFormInput.textContent
+			/**
+			 * Disable/ Enable SEND comment button if input empty/ not empty
+			 */
 			if(!isTextEmpty(commentToAdd)){
 				cFormInput.classList.add('form-textarea--filled')
 				cFormBtn.removeAttribute('disabled')

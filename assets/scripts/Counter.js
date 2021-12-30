@@ -1,26 +1,36 @@
 class Counter {
 	count;
 	commentId;
-	event;
 
 	constructor(count, commentId){
 		this.count = count
 		this.commentId = commentId
 	}
 
+	/**
+	 * Increment counter value
+	 */
 	add(){
 		this.count ++
 		this.update(1)
 	}
 
+	/**
+	 * Decrement counter value
+	 */
 	minus(){
 		this.count --
 		this.update(-1)
 	}
 
+	/**
+	 * Dispatch update event for notification popup
+	 * @param {number} action 
+	 * - 1 for upvote/ -1 for downvote
+	 */
 	update(action){
-		this.event = new CustomEvent('update', {detail:`You ${action > 0? 'upvoted':'downvoted'} a comment!`})
-		document.dispatchEvent(this.event)
+		const updateEvent = new CustomEvent('update', {detail:`You ${action > 0? 'upvoted':'downvoted'} a comment!`})
+		document.dispatchEvent(updateEvent)
 	}
 
 	getBuild(){
@@ -47,6 +57,9 @@ class Counter {
 	addEventListeners(elements){
 		const counterVals =  [...elements].map(element => element.querySelector('.counter__value'))
 
+		/**
+		 * Add click event listeners to buttons in counter
+		 */
 		elements.forEach(element => {
 			const counterBtns = element.querySelectorAll('.counter__btn')
 
