@@ -2,55 +2,55 @@ import Counter from "./Counter.js"
 import { getImageName, createElement } from "./helper.js"
 
 class Comment {
-	id;
-	content;
-	createdAt;
-	score;
-	user;
-	replies;
-	hasReplies;
-	replyingTo;
-	counter;
+	#id;
+	#content;
+	#createdAt;
+	#score;
+	#user;
+	#replies;
+	#hasReplies;
+	#replyingTo;
+	#counter;
 
 	constructor(id, content, createdAt, score, user, replies){
-		this.id = id
-		this.content = content
-		this.createdAt = createdAt
-		this.score = score
-		this.user = user
-		this.counter = new Counter(this.score, this.id)
+		this.#id = id
+		this.#content = content
+		this.#createdAt = createdAt
+		this.#score = score
+		this.#user = user
+		this.#counter = new Counter(this.#score, this.#id)
 
 		if(replies){
-			this.replies = replies
-			this.hasReplies = replies.length > 0
+			this.#replies = replies
+			this.#hasReplies = replies.length > 0
 		}
 	}
 
-	getHasReplies() {
-		return this.hasReplies
+	get hasReplies() {
+		return this.#hasReplies
 	}
 
-	getReplies(){
-		return this.replies
+	get replies(){
+		return this.#replies
 	}
 
-	getReplyingTo(){
-		return this.replyingTo
+	get replyingTo(){
+		return this.#replyingTo
 	}
 
-	setReplyingTo(replyingTo){
-		this.replyingTo = replyingTo
+	set replyingTo(replyingTo){
+		this.#replyingTo = replyingTo
 	}
 	
 	getBuild(currentUser){
-		const isCurrentUser = (currentUser === this.user.username)
+		const isCurrentUser = (currentUser === this.#user.username)
 		
 		const build = `<article class="comment card">
-							${this.counter.getBuild()}
+							${this.#counter.getBuild()}
 							<div class="card__header comment__header">
-								<img class="profile comment__profile" src="./assets/images/${getImageName(this.user.image.png)}" alt="">
+								<img class="profile comment__profile" src="./assets/images/${getImageName(this.#user.image.png)}" alt="">
 								<h3 class="comment__user">
-									${this.user.username}
+									${this.#user.username}
 									${
 										isCurrentUser
 										?`
@@ -65,7 +65,7 @@ class Comment {
 									<span class="sr-only">
 										Commented on 
 									</span>
-									${this.createdAt}
+									${this.#createdAt}
 								</p>
 								<div class="comment__btn-wrapper comment__btn-wrapper--medium">
 								${
@@ -88,10 +88,10 @@ class Comment {
 								
 							</div>
 							<p class="comment__text">
-								${this.replyingTo && `<a href="#" class="comment__tag" contenteditable="false">@${this.replyingTo}</a>`} ${this.content}
+								${this.#replyingTo && `<a href="#" class="comment__tag" contenteditable="false">@${this.#replyingTo}</a>`} ${this.#content}
 							</p>
 							<div class="comment__footer card__footer card__footer">
-								${this.counter.getBuild()}
+								${this.#counter.getBuild()}
 								<div class="comment__btn-wrapper">
 								${
 									isCurrentUser
@@ -121,7 +121,7 @@ class Comment {
 
 	addEventListeners(element){
 		const counterEls = element.querySelectorAll('.counter')
-		this.counter.addEventListeners(counterEls)
+		this.#counter.addEventListeners(counterEls)
 
 		let commentTextEl = element.querySelector('.comment__text')
 		const updateBtn = element.querySelector('.btn--blue')
@@ -162,7 +162,7 @@ class Comment {
 		updateBtn && updateBtn.addEventListener('click', () => {
 			const commentTagEl = commentTextEl.children[0]
 			const newCommentText = commentTextEl.textContent.replace(`${commentTagEl.textContent} `,'')
-			this.content = newCommentText
+			this.#content = newCommentText
 
 			const updateEvent = new CustomEvent('update',{detail:'You updated a comment!'})
 			document.dispatchEvent(updateEvent)

@@ -12,7 +12,7 @@ class Main {
 		const commentsWrapper = document.querySelector('.comments')
 
 		this.comments.forEach(comment => {
-			const hasReplies = comment.getHasReplies()
+			const hasReplies = comment.hasReplies
 
 			hasReplies && (commentsWrapper.appendChild(document.createElement('article')))
 
@@ -23,7 +23,7 @@ class Main {
 			if(hasReplies){
 				const repliesEl = createElement(`<div class="comment__replies"></div>`)
 
-				comment.getReplies()
+				comment.replies
 				.forEach(reply => {
 					const replyEl = createElement(reply.getBuild(this.currentUser))
 					reply.addEventListeners(replyEl)
@@ -108,7 +108,7 @@ class Main {
 							.map(reply => {
 								const {id, content, createdAt, score, user, replyingTo} = reply
 								const replyObj = new Comment(id, content, createdAt, score, user)
-								replyObj.setReplyingTo(replyingTo)
+								replyObj.replyingTo = replyingTo
 								return replyObj
 							})
 
